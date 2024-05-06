@@ -5,6 +5,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.reqres.config.TestBase;
 import ru.reqres.models.LoginResponseErrorModel;
@@ -18,6 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static ru.reqres.specs.ReqresSpecs.basicRequestSpec;
 import static ru.reqres.specs.ReqresSpecs.responseSpec;
 
+@Tag("regress")
 public class UserTests extends TestBase {
   
   
