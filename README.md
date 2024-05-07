@@ -1,7 +1,7 @@
 # Дипломный проект. API тесты для платформы [REQRES](https://reqres.in/)
 <img alt="reqres logo" src="images/logo/reqres.png" />
 
-## About REQRES
+## О платформе REQRES
 Reqres.in платформа для обучения взаимодействию с rest api.
 
 ## Содержание
