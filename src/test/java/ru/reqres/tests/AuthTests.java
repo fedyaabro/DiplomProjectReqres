@@ -25,7 +25,7 @@ public class AuthTests extends TestBase {
   @Test
   @Feature("Reqres.Авторизация")
   @Story("Успешный логин")
-  @DisplayName("Успещный логин")
+  @DisplayName("Успешный логин")
   @Owner("Абросимов Федор")
   void loginTest() {
     LoginBodyModel authData = new LoginBodyModel();
@@ -49,7 +49,7 @@ public class AuthTests extends TestBase {
   
   @Test
   @Feature("Reqres.Авторизация")
-  @Story("Неуспешный логин")
+  @Story("Логин без контента")
   @DisplayName("Неуспешный логин")
   @Owner("Абросимов Федор")
   void loginWithNoContentTypeTest() {

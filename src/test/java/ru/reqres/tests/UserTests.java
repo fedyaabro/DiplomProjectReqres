@@ -67,7 +67,7 @@ public class UserTests extends TestBase {
   }
   
   @Feature("Reqres.Пользователи")
-  @Story("Получение 404 кода и ошибки при некорректном запроск")
+  @Story("Получение 404 кода и ошибки при некорректном запросе")
   @DisplayName("Получкние 404")
   @Owner("Абросимов Федор")
   @Test
