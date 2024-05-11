@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LoginResponseErrorModel {
-    String error;
+  String error;
 }

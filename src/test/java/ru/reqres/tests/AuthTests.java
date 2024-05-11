@@ -6,7 +6,6 @@ import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import ru.reqres.config.TestBase;
 import ru.reqres.models.LoginBodyModel;
 import ru.reqres.models.LoginResponseErrorModel;
 import ru.reqres.models.LoginResponseModel;
@@ -17,7 +16,7 @@ import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.reqres.specs.ReqresSpecs.basicRequestSpec;
-import static ru.reqres.specs.ReqresSpecs.responseSpec;
+import static ru.reqres.specs.ReqresSpecs.loggingResponseSpec;
 
 @Tag("regress")
 public class AuthTests extends TestBase {
@@ -39,12 +38,12 @@ public class AuthTests extends TestBase {
         .when()
         .post("/login")
         .then()
-        .spec(responseSpec(200))
+        .spec(loggingResponseSpec(200))
         .body(matchesJsonSchemaInClasspath("schemas/success-login-schema.json"))
         .extract().as(LoginResponseModel.class));
     
     step("Проверяем ответ", () ->
-      assertThat(response.getToken()).isNotNull());
+      assertThat(response.getToken()).isNotEmpty());
   }
   
   @Test
@@ -63,7 +62,7 @@ public class AuthTests extends TestBase {
         .when()
         .post("/login")
         .then()
-        .spec(responseSpec(400))
+        .spec(loggingResponseSpec(400))
         .extract().as(LoginResponseErrorModel.class));
     
     step("Проверяем ответ", () ->
@@ -86,7 +85,7 @@ public class AuthTests extends TestBase {
         .when()
         .post("/login")
         .then()
-        .spec(responseSpec(400))
+        .spec(loggingResponseSpec(400))
         .extract().as(LoginResponseErrorModel.class));
     
     step("Проверяем ответ", () ->

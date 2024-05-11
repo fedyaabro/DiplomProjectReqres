@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UsersListResponseModel {
-    Integer page;
+  Integer page;
 }

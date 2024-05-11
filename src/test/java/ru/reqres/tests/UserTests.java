@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import ru.reqres.config.TestBase;
 import ru.reqres.models.LoginResponseErrorModel;
 import ru.reqres.models.UserDataResponseModel;
 import ru.reqres.models.UsersListResponseModel;
@@ -17,7 +16,7 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.reqres.specs.ReqresSpecs.basicRequestSpec;
-import static ru.reqres.specs.ReqresSpecs.responseSpec;
+import static ru.reqres.specs.ReqresSpecs.loggingResponseSpec;
 
 @Tag("regress")
 public class UserTests extends TestBase {
@@ -35,7 +34,7 @@ public class UserTests extends TestBase {
         .get("/users?page=2")
         .then()
         .body(matchesJsonSchemaInClasspath("schemas/success-users-list-schema.json"))
-        .spec(responseSpec(200))
+        .spec(loggingResponseSpec(200))
         .extract().as(UsersListResponseModel.class));
     
     step("Проверяем ответ", () ->
@@ -54,7 +53,7 @@ public class UserTests extends TestBase {
         .when()
         .get("/users/3")
         .then()
-        .spec(responseSpec(200))
+        .spec(loggingResponseSpec(200))
         .body(matchesJsonSchemaInClasspath("schemas/success-single-user-schema.json"))
         .extract().as(UserDataResponseModel.class));
     
@@ -68,7 +67,7 @@ public class UserTests extends TestBase {
   
   @Feature("Reqres.Пользователи")
   @Story("Получение 404 кода и ошибки при некорректном запросе")
-  @DisplayName("Получкние 404")
+  @DisplayName("Получение 404")
   @Owner("Абросимов Федор")
   @Test
   @Disabled("Баг на стороне reqress")
@@ -79,7 +78,7 @@ public class UserTests extends TestBase {
         .when()
         .get("/users/100")
         .then()
-        .spec(responseSpec(404))
+        .spec(loggingResponseSpec(404))
         .extract().as(LoginResponseErrorModel.class));
     
     step("Проверяем ответ", () -> {
